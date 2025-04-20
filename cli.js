@@ -74,6 +74,7 @@ function tampilkan() {
     i = i + 1;
   }
 
+  console.log("\nTotal: Rp." + hitungTotal());
 }
 
 function reset() {
@@ -170,7 +171,10 @@ const DAFTAR_MINUMAN = {
   4: buatMenuItem("Kopi Susu", 7000),
 };
 
-// ===== FOOD MENU =====
+/*-----------------------------------------------------------------------------------
+MENU MAKANAN
+-----------------------------------------------------------------------------------*/
+
 function tampilMenuMakanan() {
   console.clear();
   console.log(`
@@ -183,7 +187,7 @@ function tampilMenuMakanan() {
     | 2. Nasi Padang | Rp.12.000   |
     | 3. Pecel Lele  | Rp.20.000   |
     | 4. Bakso       | Rp.16.000   |
-    | 0. Kembali                   |
+    | 5. Kembali                   |
     |                              |
     ================================
   `);
@@ -201,7 +205,7 @@ function pilihanMakanan() {
         tampilMenuMakanan();
         pilihanMakanan();
       }, 1000);
-    } else if (pilihan === 0) {
+    } else if (pilihan === 5) {
       tampilPilihanMenu();
       handlePilihanMenu();
     } else {
@@ -214,7 +218,10 @@ function pilihanMakanan() {
   });
 }
 
-// ===== BEVERAGE MENU =====
+/*-----------------------------------------------------------------------------------
+MENU MINUMAN
+-----------------------------------------------------------------------------------*/
+
 function tampilMenuMinuman() {
   console.clear();
   console.log(`
@@ -227,7 +234,7 @@ function tampilMenuMinuman() {
     | 2. Jus Jeruk   | Rp.8.000    |
     | 3. Es Kelapa   | Rp.10.000   |
     | 4. Kopi Susu   | Rp.7.000    |
-    | 0. Kembali                   |
+    | 5. Kembali                   |
     |                              |
     ================================
   `);
@@ -241,11 +248,11 @@ function pilihanMinuman() {
       const item = DAFTAR_MINUMAN[pilihan];
       tambah(item);
       console.log("✔ " + item.name + " ditambahkan.");
-      // setTimeout(function () {
+      setTimeout(function () {
         tampilMenuMinuman();
         pilihanMinuman();
-      // },
-    } else if (pilihan === 0) {
+      }, 1000);
+    } else if (pilihan === 5) {
       tampilPilihanMenu();
       handlePilihanMenu();
     } else {
@@ -258,7 +265,10 @@ function pilihanMinuman() {
   });
 }
 
-// ===== MENU NAVIGATION =====
+/*-----------------------------------------------------------------------------------
+MENU UTAMA
+-----------------------------------------------------------------------------------*/
+
 function tampilPilihanMenu() {
   console.clear();
   console.log(`
@@ -267,7 +277,7 @@ function tampilPilihanMenu() {
     |--------------------------|
     |  1. Makanan              |
     |  2. Minuman              |
-    |  0. Kembali              |
+    |  3. Kembali              |
     ============================
   `);
 }
@@ -280,7 +290,7 @@ function handlePilihanMenu() {
     } else if (jawaban === "2") {
       tampilMenuMinuman();
       pilihanMinuman();
-    } else if (jawaban === "0") {
+    } else if (jawaban === "3") {
       menuUtama();
     } else {
       console.log("Input tidak valid.");

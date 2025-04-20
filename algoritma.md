@@ -22,9 +22,10 @@ flowchart TD
     teks@{shape: lean-r, label: "input 'kata'" }
     lowerCase@{shape: rectangle, label: " kata.trim().toLowerCase() "}
     palindrom@{shape: rectangle, label: " palindrom = ' ' "}
-    loop@{shape: diamond, label: "  kata.length - 1 >= 0 "}
-    loop2@{shape: rectangle, label: " palindrom += kata[kata.length] "}
-    decrement@{shape: rectangle, label: " kata.length-- "}
+inisial@{shape: rectangle, label: " i = kata.length - 1 "}
+    loop@{shape: diamond, label: " i >= 0 "}
+    loop2@{shape: rectangle, label: " palindrom += kata[i] "}
+    decrement@{shape: rectangle, label: " i-- "}
     banding@{shape: diamond, label: " 'kata' === 'palindrom' "}
     output1@{shape: lean-r, label: "output: 'palindrom'" }
     output2@{shape: lean-r, label: "output: 'bukan palindrom'" }
@@ -33,7 +34,8 @@ flowchart TD
     a --> teks
     teks --> lowerCase
     lowerCase --> palindrom 
-    palindrom --> loop
+    palindrom --> inisial
+    inisial --> loop
     loop -- TRUE --> loop2
     loop2 --> decrement
     decrement --> loop

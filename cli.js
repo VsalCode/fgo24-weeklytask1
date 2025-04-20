@@ -189,7 +189,7 @@ function pilihanMakanan() {
 
     const pilihan = jawaban * 1
 
-    if (pilihan === 1 || pilihan === 2 || pilihan === 3 || pilihan === 4) {
+    if (pilihan <= 4) {
       const item = DAFTAR_MAKANAN[pilihan];
       tambah(item);
       pilihanMakanan();
@@ -228,7 +228,7 @@ function pilihanMinuman() {
 
     const pilihan = jawaban * 1
 
-    if (pilihan === 1 || pilihan === 2 || pilihan === 3 || pilihan === 4) {
+    if (pilihan <= 4) {
       const item = DAFTAR_MINUMAN[pilihan * 1];
       tambah(item);
       pilihanMinuman();

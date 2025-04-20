@@ -22,7 +22,6 @@ function menuUtama() {
   `);
   rl.question("ketik angka untuk pilihan: ", function (jawaban) {
     if (jawaban === "1") {
-      tampilPilihanMenu();
       handlePilihanMenu();
     } else if (jawaban === "2") {
       lihatKeranjang();
@@ -47,8 +46,8 @@ function tambah(item) {
   cart[cart.length] = item;
 }
 
-function hitung() {
-  return cart.length;
+function hitung(){
+  cart.length
 }
 
 function hitungTotal() {
@@ -99,7 +98,6 @@ function lihatKeranjang() {
     }    
   });
 }
-
 
 
 function checkout() {
@@ -170,7 +168,7 @@ const DAFTAR_MINUMAN = {
 MENU MAKANAN
 -----------------------------------------------------------------------------------*/
 
-function tampilMenuMakanan() {
+function pilihanMakanan() {
   console.clear();
   console.log(`
     ================================
@@ -186,25 +184,21 @@ function tampilMenuMakanan() {
     |                              |
     ================================
   `);
-}
-
-function pilihanMakanan() {
+  
   rl.question("Pilih makanan (angka): ", function (jawaban) {
-    const pilihan = parseInt(jawaban);
 
-    if (pilihan >= 1 && pilihan <= 4) {
+    const pilihan = jawaban * 1
+
+    if (pilihan === 1 || pilihan === 2 || pilihan === 3 || pilihan === 4) {
       const item = DAFTAR_MAKANAN[pilihan];
       tambah(item);
-      tampilMenuMakanan();
+      pilihanMakanan();
       console.log("✔ " + item.name + " ditambahkan.")
-        pilihanMakanan();
     } else if (pilihan === 5) {
-      tampilPilihanMenu();
       handlePilihanMenu();
     } else {
+      pilihanMakanan();
       console.log("Pilihan tidak valid.");
-        tampilMenuMakanan();
-        pilihanMakanan();
     }
   });
 }
@@ -213,7 +207,7 @@ function pilihanMakanan() {
 MENU MINUMAN
 -----------------------------------------------------------------------------------*/
 
-function tampilMenuMinuman() {
+function pilihanMinuman() {
   console.clear();
   console.log(`
     ================================
@@ -229,24 +223,20 @@ function tampilMenuMinuman() {
     |                              |
     ================================
   `);
-}
 
-function pilihanMinuman() {
   rl.question("Pilih minuman (angka): ", function (jawaban) {
-    const pilihan = parseInt(jawaban);
 
-    if (DAFTAR_MINUMAN[pilihan] !== undefined) {
-      const item = DAFTAR_MINUMAN[pilihan];
+    const pilihan = jawaban * 1
+
+    if (pilihan === 1 || pilihan === 2 || pilihan === 3 || pilihan === 4) {
+      const item = DAFTAR_MINUMAN[pilihan * 1];
       tambah(item);
-      tampilMenuMinuman();
-      console.log("✔ " + item.name + " ditambahkan.");
       pilihanMinuman();
+      console.log("✔ " + item.name + " ditambahkan.");
     } else if (pilihan === 5) {
-      tampilPilihanMenu();
       handlePilihanMenu();
     } else {
       console.log("Pilihan tidak valid.");
-        tampilMenuMinuman();
         pilihanMinuman();
     }
   });
@@ -256,7 +246,7 @@ function pilihanMinuman() {
 MENU UTAMA
 -----------------------------------------------------------------------------------*/
 
-function tampilPilihanMenu() {
+function handlePilihanMenu() {
   console.clear();
   console.log(`
     ============================
@@ -267,21 +257,16 @@ function tampilPilihanMenu() {
     |  3. Kembali              |
     ============================
   `);
-}
-
-function handlePilihanMenu() {
+  
   rl.question("ketik angka untuk pilihan: ", function (jawaban) {
     if (jawaban === "1") {
-      tampilMenuMakanan();
       pilihanMakanan();
     } else if (jawaban === "2") {
-      tampilMenuMinuman();
       pilihanMinuman();
     } else if (jawaban === "3") {
       menuUtama();
     } else {
       console.log("Input tidak valid.");
-        tampilPilihanMenu();
         handlePilihanMenu();
     }
   });

@@ -33,7 +33,6 @@ function menuUtama() {
       rl.close();
     } else {
       console.log("Input tidak valid.");
-      setTimeout(menuUtama, 1500);
     }
   });
 }
@@ -83,50 +82,46 @@ function reset() {
 
 function lihatKeranjang() {
   console.clear();
-  console.log("=== KERANJANG BELANJA ===\n");
+  console.log(`
+  === KERANJANG BELANJA ===
+  `);
+
 
   if (hitung() === 0) {
-    console.log("Keranjang kamu masih kosong.");
+    console.log("Keranjang kamu masih kosong. \n");
   } else {
     tampilkan();
   }
 
-  rl.question("\nTekan Enter untuk kembali ke menu utama...", function () {
-    console.clear();
-    menuUtama();
+  rl.question(`ketik 0 untuk kembali ke menu utama: `, function (back) {
+    if (back === "0" ){
+      menuUtama();
+    }    
   });
 }
 
-function samakanString(str1, str2) {
-  if (str1.length !== str2.length) {
-    return false;
-  }
 
-  let i = 0;
-  while (i < str1.length) {
-    if (str1.charAt(i) !== str2.charAt(i)) {
-      return false;
-    }
-    i = i + 1;
-  }
-
-  return true;
-}
 
 function checkout() {
   console.clear();
 
   if (hitung() === 0) {
     console.log("Belum ada item untuk checkout.");
-    rl.question("\nTekan Enter untuk kembali ke menu utama...", function () {
-      console.clear();
-      menuUtama();
+    rl.question("\nKetik 0 untuk kembali ke menu utama: ", function (back) {
+      if(back === "0"){
+        console.clear();
+        menuUtama();
+      }
     });
     return;
   }
 
-  console.log("=== CHECKOUT ===\n");
-  console.log("Daftar pembelian:");
+  console.log(`
+  === CHECKOUT ===
+  Daftar pembelian:
+  ================
+  `);
+  console.log("");
   tampilkan();
 
   rl.question("\nKonfirmasi pembayaran (y/n): ", function (answer) {
@@ -200,20 +195,16 @@ function pilihanMakanan() {
     if (pilihan >= 1 && pilihan <= 4) {
       const item = DAFTAR_MAKANAN[pilihan];
       tambah(item);
-      console.log("✔ " + item.name + " ditambahkan.");
-      setTimeout(function () {
-        tampilMenuMakanan();
+      tampilMenuMakanan();
+      console.log("✔ " + item.name + " ditambahkan.")
         pilihanMakanan();
-      }, 1000);
     } else if (pilihan === 5) {
       tampilPilihanMenu();
       handlePilihanMenu();
     } else {
       console.log("Pilihan tidak valid.");
-      setTimeout(function () {
         tampilMenuMakanan();
         pilihanMakanan();
-      }, 1000);
     }
   });
 }
@@ -247,20 +238,16 @@ function pilihanMinuman() {
     if (DAFTAR_MINUMAN[pilihan] !== undefined) {
       const item = DAFTAR_MINUMAN[pilihan];
       tambah(item);
+      tampilMenuMinuman();
       console.log("✔ " + item.name + " ditambahkan.");
-      setTimeout(function () {
-        tampilMenuMinuman();
-        pilihanMinuman();
-      }, 1000);
+      pilihanMinuman();
     } else if (pilihan === 5) {
       tampilPilihanMenu();
       handlePilihanMenu();
     } else {
       console.log("Pilihan tidak valid.");
-      setTimeout(function () {
         tampilMenuMinuman();
         pilihanMinuman();
-      }, 1000);
     }
   });
 }
@@ -294,10 +281,8 @@ function handlePilihanMenu() {
       menuUtama();
     } else {
       console.log("Input tidak valid.");
-      setTimeout(function () {
         tampilPilihanMenu();
         handlePilihanMenu();
-      }, 1500);
     }
   });
 }
